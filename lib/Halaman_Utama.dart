@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:tesucp/HalamanToko.dart';
 
 class HalamanToko extends StatefulWidget {
   const HalamanToko({super.key});
@@ -57,6 +58,16 @@ class _HalamanTokoState extends State<HalamanToko> {
                 );
               }),
             ),
+            floatingActionButton: FloatingActionButton(
+          child: Text(
+            '+',
+            style: TextStyle(fontSize: 24),
+          ),
+          backgroundColor: Colors.deepOrange,
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => TambahToko()));
+          }),
 
     );
   }
