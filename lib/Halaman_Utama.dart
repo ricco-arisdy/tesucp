@@ -12,26 +12,25 @@ class HalamanToko extends StatefulWidget {
 }
 
 class _HalamanTokoState extends State<HalamanToko> {
-
   List _listdata = [];
   bool _loading = true;
 
-  Future _getdata()async{
+  Future _getdata() async {
     try {
       final respon =
           await http.get(Uri.parse('http://192.168.100.6/api_pam/read.php'));
-          if (respon.statusCode == 200) {
+      if (respon.statusCode == 200) {
         final data = jsonDecode(respon.body);
         setState(() {
           _listdata = data;
           _loading = false;
         });
       }
-
     } catch (e) {
       print(e);
     }
   }
+
   void initState() {
     _getdata();
     super.initState();
@@ -58,17 +57,16 @@ class _HalamanTokoState extends State<HalamanToko> {
                 );
               }),
             ),
-            floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
           child: Text(
             '+',
             style: TextStyle(fontSize: 24),
           ),
           backgroundColor: Colors.deepOrange,
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => TambahToko()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => TambahToko()));
           }),
-
     );
   }
 }

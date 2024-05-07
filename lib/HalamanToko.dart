@@ -10,6 +10,11 @@ class TambahToko extends StatefulWidget {
 class _TambahTokoState extends State<TambahToko> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tambah Toko'),
+        backgroundColor: Colors.deepOrange,
+      ),
+    );
   }
 }
