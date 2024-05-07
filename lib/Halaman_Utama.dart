@@ -43,6 +43,21 @@ class _HalamanTokoState extends State<HalamanToko> {
         title: Text('Halaman Toko'),
         backgroundColor: Colors.deepOrange,
       ),
+      body: _loading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemCount: _listdata.length,
+              itemBuilder: ((context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(_listdata[index]['nama_toko']),
+                  ),
+                );
+              }),
+            ),
+
     );
   }
 }
