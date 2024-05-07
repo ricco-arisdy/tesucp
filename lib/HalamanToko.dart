@@ -30,6 +30,27 @@ class _TambahTokoState extends State<TambahToko> {
         title: Text('Tambah Toko'),
         backgroundColor: Colors.deepOrange,
       ),
+      body: Form(
+        key: formKey,
+        child: Container(
+            padding: EdgeInsets.all(20),
+            child: Column(children: [
+              TextFormField(
+                controller: nama_toko,
+                decoration: InputDecoration(
+                  hintText: 'Nama Toko',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Nama toko tidak boleh kosong!";
+                  }
+                },
+              )
+            ])),
+      ),
     );
   }
 }
