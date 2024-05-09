@@ -59,7 +59,15 @@ class _HalamanTokoState extends State<HalamanToko> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Halaman Data Wisata Kuliner'),
-        backgroundColor: Colors.deepOrange,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blue, Colors.white], // Warna gradasi dari biru ke putih
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
       ),
       body: _loading
           ? Center(
