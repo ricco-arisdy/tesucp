@@ -106,41 +106,50 @@ class _HalamanTokoState extends State<HalamanToko> {
                                             },
                                           )));
                             },
-                            icon: Icon(Icons.edit),
+                            icon: Icon(
+                              Icons.edit,
+                              color: Colors.blue,
+                              size: 24,
+                            ),
                           ),
                           IconButton(
-                              onPressed: () {
-                                showDialog(
-                                    barrierDismissible:
-                                        false, //untuk mencegah klik sembarangan dan keluar
-                                    context: context,
-                                    builder: ((context) {
-                                      return AlertDialog(
-                                        content: Text('Hapus data ini ?'),
-                                        actions: [
-                                          ElevatedButton(
-                                              onPressed: () {
-                                                _hapus(_listdata[index]['id'])
-                                                    .then((value) {
-                                                  Navigator.pushAndRemoveUntil(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: ((context) =>
-                                                              HalamanToko())),
-                                                      (route) => false);
-                                                });
-                                              },
-                                              child: Text('Hapus')),
-                                          ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              child: Text('Batal')),
-                                        ],
-                                      );
-                                    }));
-                              },
-                              icon: Icon(Icons.delete))
+                            onPressed: () {
+                              showDialog(
+                                  barrierDismissible:
+                                      false, //untuk mencegah klik sembarangan dan keluar
+                                  context: context,
+                                  builder: ((context) {
+                                    return AlertDialog(
+                                      content: Text('Hapus data ini ?'),
+                                      actions: [
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              _hapus(_listdata[index]['id'])
+                                                  .then((value) {
+                                                Navigator.pushAndRemoveUntil(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: ((context) =>
+                                                            HalamanToko())),
+                                                    (route) => false);
+                                              });
+                                            },
+                                            child: Text('Hapus')),
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('Batal')),
+                                      ],
+                                    );
+                                  }));
+                            },
+                            icon: Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                              size: 24,
+                            ),
+                          ),
                         ],
                       ),
                     ),
