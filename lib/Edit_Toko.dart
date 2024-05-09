@@ -66,8 +66,19 @@ class _UbahTokoState extends State<UbahToko> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ubah Toko'),
-        backgroundColor: Colors.deepOrange,
+        title: Text('Ubah Toko Wisata Kuliner'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue,
+                Colors.white
+              ], // Warna gradasi dari biru ke putih
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
       ),
       body: Form(
         key: formKey,
@@ -172,7 +183,7 @@ class _UbahTokoState extends State<UbahToko> {
               SizedBox(height: 10),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepOrange,
+                  backgroundColor: const Color.fromARGB(255, 96, 192, 236),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -197,7 +208,12 @@ class _UbahTokoState extends State<UbahToko> {
                     });
                   }
                 },
-                child: Text('Simpan'),
+                child: Text(
+                  'Simpan',
+                  style: TextStyle(
+                    color: Colors.black, 
+                  ),
+                ),
               ),
             ],
           ),
