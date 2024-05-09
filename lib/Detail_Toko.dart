@@ -33,8 +33,16 @@ class _DetailTokoState extends State<DetailToko> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail Toko'),
-        backgroundColor: Colors.deepOrange,
+        title: Text('Detail Toko Wisata Kuliner'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blue, Colors.white], // Warna gradasi dari biru ke putih
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(30),
