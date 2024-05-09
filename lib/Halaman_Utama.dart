@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tesucp/Detail_Produk.dart';
 import 'package:tesucp/Edit_Toko.dart';
-import 'package:tesucp/HalamanToko.dart';
+import 'package:tesucp/AddToko.dart';
 
 class HalamanToko extends StatefulWidget {
   const HalamanToko({super.key});
