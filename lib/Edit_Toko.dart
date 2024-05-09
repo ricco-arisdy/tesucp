@@ -122,12 +122,14 @@ class _UbahTokoState extends State<UbahToko> {
                     },
                   ),
                   SizedBox(height: 10),
-                  TextButton(
+                  TextButton.icon(
                     onPressed: _openMapScreen,
-                    child: Text(
+                    icon: Icon(Icons.map,
+                        color: Colors.black), // Tambahkan ikon peta
+                    label: Text(
                       'Pilih Lokasi dari Peta',
                       style: TextStyle(
-                        color: Colors.deepOrange,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -211,7 +213,7 @@ class _UbahTokoState extends State<UbahToko> {
                 child: Text(
                   'Simpan',
                   style: TextStyle(
-                    color: Colors.black, 
+                    color: Colors.black,
                   ),
                 ),
               ),
