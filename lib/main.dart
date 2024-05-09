@@ -13,8 +13,6 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Aplikasi Wisata Kuliner',
       home: HalamanToko(),
-      );
+    );
   }
 }
-
-

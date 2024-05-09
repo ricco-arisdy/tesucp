@@ -1,36 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:tesucp/Halaman_Maps.dart';
 import 'package:tesucp/Halaman_Utama.dart';
-import 'package:tesucp/Halaman_Maps.dart'; // Import MapScreen.dart
 
-class TambahToko extends StatefulWidget {
-  const TambahToko({Key? key});
+class UbahToko extends StatefulWidget {
+  final Map ListData;
+  const UbahToko({super.key, required this.ListData});
 
   @override
-  State<TambahToko> createState() => _TambahTokoState();
+  State<UbahToko> createState() => _UbahTokoState();
 }
 
-class _TambahTokoState extends State<TambahToko> {
+class _UbahTokoState extends State<UbahToko> {
   final formKey = GlobalKey<FormState>();
+  TextEditingController id = TextEditingController();
   TextEditingController nama_toko = TextEditingController();
   TextEditingController alamat = TextEditingController();
   TextEditingController notelp = TextEditingController();
   String? kesanValue;
 
-  Future _simpan() async {
-    final response = await http.post(
-      Uri.parse('http://192.168.100.6/api_pam/create.php'),
-      body: {
-        'nama_toko': nama_toko.text,
-        'alamat': alamat.text,
-        'notelp': notelp.text,
-        'kesan': kesanValue ?? '',
-      },
-    );
-    if (response.statusCode == 200) {
+  Future _ubah() async {
+    final respon = await http
+        .post(Uri.parse('http://192.168.100.6/api_pam/edit.php'), body: {
+      'id': id.text,
+      'nama_toko': nama_toko.text,
+      'alamat': alamat.text,
+      'notelp': notelp.text,
+      'kesan': kesanValue ?? '',
+    });
+    if (respon.statusCode == 200) {
       return true;
     }
     return false;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Inisialisasi TextEditingController dengan nilai dari ListData
+    id.text = widget.ListData['id'] ?? '';
+    nama_toko.text = widget.ListData['nama_toko'] ?? '';
+    alamat.text = widget.ListData['alamat'] ?? '';
+    notelp.text = widget.ListData['notelp'] ?? '';
+    kesanValue = widget.ListData['kesan'] ?? null;
   }
 
   // Fungsi untuk membuka MapScreen
@@ -54,7 +66,7 @@ class _TambahTokoState extends State<TambahToko> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tambahkan Wisata Kuliner Mu'),
+        title: Text('Ubah Toko'),
         backgroundColor: Colors.deepOrange,
       ),
       body: Form(
@@ -167,7 +179,7 @@ class _TambahTokoState extends State<TambahToko> {
                 ),
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    _simpan().then((value) {
+                    _ubah().then((value) {
                       final snackBar = SnackBar(
                         content: Text(value
                             ? 'Data berhasil disimpan'
