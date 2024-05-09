@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:tesucp/Halaman_Utama.dart';
 import 'package:tesucp/Halaman_Maps.dart'; // Import MapScreen.dart
 
@@ -19,7 +22,7 @@ class _TambahTokoState extends State<TambahToko> {
 
   Future _simpan() async {
     final response = await http.post(
-      Uri.parse('http://192.168.47.76/api_pam/create.php'),
+      Uri.parse('http://192.168.100.6/api_pam/create.php'),
       body: {
         'nama_toko': nama_toko.text,
         'alamat': alamat.text,
@@ -45,9 +48,6 @@ class _TambahTokoState extends State<TambahToko> {
                 });
               })),
     );
-
-    // Jika Anda ingin menangani data yang dipilih dari MapScreen setelah pengguna
-    // menyelesaikan pemilihan lokasi, Anda dapat melakukannya di sini
   }
 
   @override

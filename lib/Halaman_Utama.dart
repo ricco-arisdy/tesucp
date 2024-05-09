@@ -36,7 +36,7 @@ class _HalamanTokoState extends State<HalamanToko> {
   Future _hapus(String id) async {
     try {
       final respon = await http
-          .post(Uri.parse('http://192.168.47.76/api_pam/delete.php'), body: {
+          .post(Uri.parse('http://192.168.100.6/api_pam/delete.php'), body: {
         "id": id,
       });
       if (respon.statusCode == 200) {
