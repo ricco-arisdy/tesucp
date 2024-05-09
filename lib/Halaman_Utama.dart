@@ -170,7 +170,7 @@ class _HalamanTokoState extends State<HalamanToko> {
             '+',
             style: TextStyle(fontSize: 24),
           ),
-          backgroundColor: Colors.deepOrange,
+          backgroundColor: const Color.fromARGB(255, 96, 192, 236),
           onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => TambahToko()));
