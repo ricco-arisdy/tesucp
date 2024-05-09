@@ -54,8 +54,19 @@ class _TambahTokoState extends State<TambahToko> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tambahkan Wisata Kuliner Mu'),
-        backgroundColor: Colors.deepOrange,
+        title: Text('Tambahkan Wisata Kuliner'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue,
+                Colors.white
+              ], // Warna gradasi dari biru ke putih
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
       ),
       body: Form(
         key: formKey,
@@ -99,12 +110,13 @@ class _TambahTokoState extends State<TambahToko> {
                     },
                   ),
                   SizedBox(height: 10),
-                  TextButton(
+                  TextButton.icon(
                     onPressed: _openMapScreen,
-                    child: Text(
+                    icon: Icon(Icons.map, color: Colors.black),
+                    label: Text(
                       'Pilih Lokasi dari Peta',
                       style: TextStyle(
-                        color: Colors.deepOrange,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -160,7 +172,7 @@ class _TambahTokoState extends State<TambahToko> {
               SizedBox(height: 10),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepOrange,
+                  backgroundColor: const Color.fromARGB(255, 96, 192, 236),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -185,7 +197,12 @@ class _TambahTokoState extends State<TambahToko> {
                     });
                   }
                 },
-                child: Text('Simpan'),
+                child: Text(
+                  'Simpan',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ],
           ),
