@@ -33,6 +33,11 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                CircleAvatar(
+                  radius: 100,
+                  backgroundImage: AssetImage('assets/natural_product.png'),
+                ),
+                const SizedBox(height: 20),
                 Text(
                   'Welcome Back!',
                   style: Theme.of(context).textTheme.headline4,
