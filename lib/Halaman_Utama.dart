@@ -9,7 +9,7 @@ import 'package:tesucp/login.dart';
 import 'package:tesucp/profile_screen.dart';
 
 class HalamanToko extends StatefulWidget {
-  const HalamanToko({super.key});
+  const HalamanToko({Key? key}) : super(key: key);
 
   @override
   State<HalamanToko> createState() => _HalamanTokoState();
@@ -51,9 +51,29 @@ class _HalamanTokoState extends State<HalamanToko> {
     }
   }
 
+  @override
   void initState() {
     _getdata();
     super.initState();
+  }
+
+  void _filterData(String query) {
+    setState(() {
+      _listdata = _listdata.where((item) {
+        return item['nama_toko']
+            .toString()
+            .toLowerCase()
+            .contains(query.toLowerCase());
+      }).toList();
+    });
+  }
+
+  void _onSearchTextChanged(String query) {
+    if (query.isEmpty) {
+      _getdata();
+    } else {
+      _filterData(query);
+    }
   }
 
   @override
@@ -68,7 +88,11 @@ class _HalamanTokoState extends State<HalamanToko> {
           ),
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                  context: context,
+                  delegate: DataSearch(_listdata, _onSearchTextChanged));
+            },
           ),
           PopupMenuButton<String>(
             onSelected: (value) {
@@ -158,8 +182,7 @@ class _HalamanTokoState extends State<HalamanToko> {
                           IconButton(
                             onPressed: () {
                               showDialog(
-                                  barrierDismissible:
-                                      false, //untuk mencegah klik sembarangan dan keluar
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: ((context) {
                                     return AlertDialog(
@@ -169,12 +192,10 @@ class _HalamanTokoState extends State<HalamanToko> {
                                             onPressed: () {
                                               _hapus(_listdata[index]['id'])
                                                   .then((value) {
-                                                Navigator.pushAndRemoveUntil(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: ((context) =>
-                                                            HalamanToko())),
-                                                    (route) => false);
+                                                if (value) {
+                                                  _getdata();
+                                                  Navigator.of(context).pop();
+                                                }
                                               });
                                             },
                                             child: Text('Hapus')),
@@ -206,10 +227,70 @@ class _HalamanTokoState extends State<HalamanToko> {
             style: TextStyle(fontSize: 24),
           ),
           backgroundColor: const Color.fromARGB(255, 96, 192, 236),
-          onPressed: () {
-            Navigator.push(
+          onPressed: () async {
+            var result = await Navigator.push(
                 context, MaterialPageRoute(builder: (context) => TambahToko()));
+            if (result == true) {
+              _getdata();
+            }
           }),
+    );
+  }
+}
+
+class DataSearch extends SearchDelegate<String> {
+  final List listdata;
+  final Function(String) onQueryChanged;
+
+  DataSearch(this.listdata, this.onQueryChanged);
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+          onQueryChanged('');
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, '');
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Container();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    onQueryChanged(query);
+
+    final suggestionList = query.isEmpty
+        ? listdata
+        : listdata
+            .where((item) =>
+                item['nama_toko'].toLowerCase().contains(query.toLowerCase()))
+            .toList();
+
+    return ListView.builder(
+      itemBuilder: (context, index) => ListTile(
+        title: Text(suggestionList[index]['nama_toko']),
+        onTap: () {
+          // Implementasi saat item disarankan di tap
+        },
+      ),
+      itemCount: suggestionList.length,
     );
   }
 }
