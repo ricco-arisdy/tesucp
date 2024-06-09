@@ -21,6 +21,7 @@ class _DetailTokoState extends State<DetailToko> {
   @override
   void initState() {
     super.initState();
+    
     // Inisialisasi TextEditingController dengan nilai dari ListData
     id.text = widget.ListData['id'] ?? '';
     nama_toko.text = widget.ListData['nama_toko'] ?? '';

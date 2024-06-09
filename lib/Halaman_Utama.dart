@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:tesucp/Detail_Toko.dart';
 import 'package:tesucp/Edit_Toko.dart';
 import 'package:tesucp/AddToko.dart';
+import 'package:tesucp/login.dart';
+import 'package:tesucp/profile_screen.dart';
 
 class HalamanToko extends StatefulWidget {
   const HalamanToko({super.key});
@@ -58,16 +60,49 @@ class _HalamanTokoState extends State<HalamanToko> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Halaman Data Wisata Kuliner'),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.blue, Colors.white], // Warna gradasi dari biru ke putih
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
+        title: Text('Tani Jaya'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.camera_alt),
+            onPressed: () {},
           ),
-        ),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          ),
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              switch (value) {
+                case 'Profile':
+                   Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) =>Profile()),
+                    (route) => false,
+                  );
+                  break;
+                case 'Logout':
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    (route) => false,
+                  );
+                  break;
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(
+                  value: 'Profile',
+                  child: Text('Profile'),
+                ),
+                PopupMenuItem(
+                  value: 'Logout',
+                  child: Text('Logout'),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: _loading
           ? Center(
@@ -128,7 +163,7 @@ class _HalamanTokoState extends State<HalamanToko> {
                                   context: context,
                                   builder: ((context) {
                                     return AlertDialog(
-                                      content: Text('Hapus data ini ?'),
+                                      content: Text('Hapus data ini?'),
                                       actions: [
                                         ElevatedButton(
                                             onPressed: () {

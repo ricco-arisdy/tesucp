@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tesucp/Halaman_Utama.dart';
+import 'package:tesucp/login.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Aplikasi Wisata Kuliner',
-      home: HalamanToko(),
+      home: LoginPage(),
     );
   }
 }
