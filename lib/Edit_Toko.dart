@@ -21,7 +21,7 @@ class _UbahTokoState extends State<UbahToko> {
 
   Future _ubah() async {
     final respon = await http
-        .post(Uri.parse('http://192.168.100.6/api_pam/edit.php'), body: {
+        .post(Uri.parse('http://192.168.0.105/api_pam/edit.php'), body: {
       'id': id.text,
       'nama_toko': nama_toko.text,
       'alamat': alamat.text,

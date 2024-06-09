@@ -22,7 +22,7 @@ class _TambahTokoState extends State<TambahToko> {
 
   Future _simpan() async {
     final response = await http.post(
-      Uri.parse('http://192.168.100.6/api_pam/create.php'),
+      Uri.parse('http://192.168.0.105/api_pam/create.php'),
       body: {
         'nama_toko': nama_toko.text,
         'alamat': alamat.text,

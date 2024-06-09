@@ -22,7 +22,7 @@ class _HalamanTokoState extends State<HalamanToko> {
   Future _getdata() async {
     try {
       final respon =
-          await http.get(Uri.parse('http://192.168.100.6/api_pam/read.php'));
+          await http.get(Uri.parse('http://192.168.0.105/api_pam/read.php'));
       if (respon.statusCode == 200) {
         final data = jsonDecode(respon.body);
         setState(() {
@@ -38,7 +38,7 @@ class _HalamanTokoState extends State<HalamanToko> {
   Future _hapus(String id) async {
     try {
       final respon = await http
-          .post(Uri.parse('http://192.168.100.6/api_pam/delete.php'), body: {
+          .post(Uri.parse('http://192.168.0.105/api_pam/delete.php'), body: {
         "id": id,
       });
       if (respon.statusCode == 200) {
@@ -74,9 +74,9 @@ class _HalamanTokoState extends State<HalamanToko> {
             onSelected: (value) {
               switch (value) {
                 case 'Profile':
-                   Navigator.pushAndRemoveUntil(
+                  Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) =>Profile()),
+                    MaterialPageRoute(builder: (context) => Profile()),
                     (route) => false,
                   );
                   break;

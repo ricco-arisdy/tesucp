@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<bool> _login(String email, String password) async {
-    var url = Uri.parse('http://192.168.100.6/api_pam/login.php');
+    var url = Uri.parse('http://192.168.0.105/api_pam/login.php');
     var response = await http.post(url, body: {
       'action': 'login',
       'email': email,
