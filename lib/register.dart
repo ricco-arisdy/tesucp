@@ -83,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   // Fungsi untuk melakukan registrasi
   Future<bool> _register(String username, String email, String password) async {
-    var url = Uri.parse('http://192.168.0.105/api_pam/register.php');
+    var url = Uri.parse('http://192.168.100.6/api_pam/register.php');
     var response = await http.post(url, body: {
       'username': username,
       'email': email,
