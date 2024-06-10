@@ -22,9 +22,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tani Jaya'),
-        centerTitle: true,
-      ),
+          title: const Text('Tani Jaya'),
+          centerTitle: true,
+          backgroundColor: Colors.green),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20.0),

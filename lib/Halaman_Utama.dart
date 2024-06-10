@@ -61,6 +61,7 @@ class _HalamanTokoState extends State<HalamanToko> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tani Jaya'),
+        backgroundColor: Color.fromRGBO(44, 173, 15, 0.886),
         actions: [
           IconButton(
             icon: Icon(Icons.camera_alt),
